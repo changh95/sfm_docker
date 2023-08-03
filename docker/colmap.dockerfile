@@ -1,7 +1,8 @@
 FROM nvidia/cuda:12.2.0-devel-ubuntu22.04
 
 ARG COLMAP_VERSION=dev
-ARG CUDA_ARCHITECTURES=native
+ARG CUDA_ARCHITECTURES="60;70;75;80;86"
+ENV QT_XCB_GL_INTEGRATION=xcb_egl
 
 # Prevent stop building ubuntu at time zone selection.  
 ENV DEBIAN_FRONTEND=noninteractive
@@ -22,6 +23,7 @@ RUN apt-get update && apt-get install -y \
     libfreeimage-dev \
     libmetis-dev \
     libgoogle-glog-dev \
+    libgtest-dev \
     libgflags-dev \
     libsqlite3-dev \
     libglew-dev \
